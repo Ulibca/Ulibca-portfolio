@@ -1555,49 +1555,165 @@ h2 { animation-delay: 0.2s; }
         .delay-3 { animation-delay: 0.6s; }
 
         
-/* Мобильная адаптация навигации */
+/* ===== БУРГЕР-МЕНЮ ===== */
+
+/* Десктопная навигация */
+.desktop-nav {
+    display: flex;
+    justify-content: center;
+    background: rgba(0, 0, 0, 0.9);
+    padding: 15px;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    backdrop-filter: blur(10px);
+    border-bottom: 3px solid #ff6b6b;
+}
+
+.desktop-nav a {
+    color: white;
+    text-decoration: none;
+    margin: 0 15px;
+    padding: 10px 15px;
+    border-radius: 8px;
+    transition: all 0.3s ease;
+    font-weight: bold;
+}
+
+.desktop-nav a:hover {
+    background: rgba(255, 107, 107, 0.2);
+    color: #ff6b6b;
+    transform: translateY(-2px);
+}
+
+
+
+/* Мобильная навигация (изначально скрыта) */
+.mobile-nav {
+    display: none; /* По умолчанию скрыто */
+    background: rgba(0, 0, 0, 0.95);
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 1001;
+    backdrop-filter: blur(10px);
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.3);
+}
+
+/* Шапка меню */
+.menu-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 20px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.logo {
+    color: white;
+    font-size: 1.3em;
+    font-weight: bold;
+    background: linear-gradient(45deg, #ff6b6b, #4ecdc4);
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+/* Кнопка гамбургера */
+.hamburger {
+    background: none;
+    border: none;
+    color: white;
+    font-size: 1.8em;
+    cursor: pointer;
+    padding: 5px 10px;
+    border-radius: 5px;
+    transition: all 0.3s ease;
+}
+
+.hamburger:hover {
+    background: rgba(255, 107, 107, 0.2);
+    transform: rotate(90deg);
+}
+
+/* Мобильное меню (скрыто по умолчанию) */
+.mobile-menu {
+    display: none;
+    flex-direction: column;
+    padding: 10px 0;
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.3s ease-out;
+}
+
+/* Когда меню открыто */
+.mobile-menu.active {
+    display: flex;
+    max-height: 500px;
+    animation: slideDown 0.3s ease-out;
+}
+
+@keyframes slideDown {
+    from {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Ссылки в мобильном меню */
+.mobile-menu a {
+    color: white;
+    text-decoration: none;
+    padding: 15px 20px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    transition: all 0.3s ease;
+    font-size: 1.1em;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.mobile-menu a:hover {
+    background: rgba(255, 107, 107, 0.2);
+    color: #ff6b6b;
+    padding-left: 25px;
+}
+
+.mobile-menu a:last-child {
+    border-bottom: none;
+}
+
+/* Адаптивность: показываем мобильное меню на телефонах */
 @media (max-width: 768px) {
-    /* Делаем меню компактным */
-    nav {
-        display: flex;
-        flex-wrap: wrap;
-        justify-content: center;
-        padding: 8px;
-        background: rgba(0, 0, 0, 0.95);
-        position: sticky;
-        top: 0;
-        z-index: 1000;
+    .desktop-nav {
+        display: none; /* Скрываем десктопное меню */
     }
     
-    /* Каждая ссылка занимает 25% ширины (4 в ряд) */
-    nav a {
-        flex: 0 0 calc(25% - 10px);
-        margin: 3px;
-        padding: 8px 5px;
-        font-size: 0.8em;
-        text-align: center;
-        border-radius: 5px;
-        background: rgba(255, 255, 255, 0.05);
+    .mobile-nav {
+        display: block; /* Показываем мобильное меню */
     }
     
-    /* На очень маленьких экранах - 3 в ряд */
-    @media (max-width: 480px) {
-        nav a {
-            flex: 0 0 calc(33.333% - 10px);
-            font-size: 0.75em;
-            padding: 6px 3px;
-        }
+    /* Добавляем отступ для контента под фиксированным меню */
+    body {
+        padding-top: 60px;
+    }
+}
+
+/* Для очень маленьких экранов */
+@media (max-width: 480px) {
+    .logo {
+        font-size: 1.1em;
     }
     
-    /* Убираем текст, оставляем только иконки */
-    nav a span {
-        display: none;
+    .hamburger {
+        font-size: 1.5em;
     }
     
-    /* Делаем иконки больше */
-    nav a::before {
-        font-size: 1.2em;
-        display: block;
-        margin-bottom: 3px;
+    .mobile-menu a {
+        padding: 12px 20px;
+        font-size: 1em;
     }
 }

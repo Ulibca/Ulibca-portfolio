@@ -15,6 +15,23 @@
         <a href="services.html">💼 Услуги</a>
         <a href="contact.html">📞 Контакты</a>
     </nav>
+        <!-- Мобильная навигация с бургер-меню (видна на телефонах) -->
+<nav class="mobile-nav">
+    <div class="menu-header">
+        <div class="logo">Ulibca</div>
+        <button class="hamburger" id="hamburgerBtn">☰</button>
+    </div>
+    
+    <div class="mobile-menu" id="mobileMenu">
+        <a href="index.html" onclick="closeMenu()">🏠 Главная</a>
+        <a href="portfolio.html" onclick="closeMenu()">🎨 Работы</a>
+        <a href="book.html" onclick="closeMenu()">📖 Книга</a>
+        <a href="me.html" onclick="closeMenu()">👤 Обо мне</a>
+        <a href="services.html" onclick="closeMenu()">💼 Услуги</a>
+        <a href="video.html" onclick="closeMenu()">🎥 Видео</a>
+        <a href="contact.html" onclick="closeMenu()">📞 Контакты</a>
+    </div>
+</nav>
     <main class="about-container">
         <!-- Герой-секция с фото -->
         <section class="about-hero animate-slide">
@@ -263,6 +280,72 @@
         </p>
     </footer>
 </center>
+
+<script>
+// Функции для бургер-меню
+
+// Переключение меню
+function toggleMenu() {
+    const menu = document.getElementById('mobileMenu');
+    const btn = document.getElementById('hamburgerBtn');
+    
+    menu.classList.toggle('active');
+    
+    // Меняем иконку
+    if (menu.classList.contains('active')) {
+        btn.innerHTML = '✕'; // Иконка закрытия
+        btn.style.transform = 'rotate(180deg)';
+    } else {
+        btn.innerHTML = '☰'; // Иконка меню
+        btn.style.transform = 'rotate(0)';
+    }
+}
+
+// Закрытие меню
+function closeMenu() {
+    const menu = document.getElementById('mobileMenu');
+    const btn = document.getElementById('hamburgerBtn');
+    
+    menu.classList.remove('active');
+    btn.innerHTML = '☰';
+    btn.style.transform = 'rotate(0)';
+}
+
+// Закрытие меню при клике вне его
+document.addEventListener('DOMContentLoaded', function() {
+    const hamburgerBtn = document.getElementById('hamburgerBtn');
+    const mobileMenu = document.getElementById('mobileMenu');
+    
+    // Назначаем обработчик на кнопку
+    if (hamburgerBtn) {
+        hamburgerBtn.addEventListener('click', toggleMenu);
+    }
+    
+    // Закрытие при клике вне меню
+    document.addEventListener('click', function(event) {
+        const isClickInsideMenu = mobileMenu.contains(event.target);
+        const isClickOnHamburger = hamburgerBtn.contains(event.target);
+        
+        if (!isClickInsideMenu && !isClickOnHamburger && mobileMenu.classList.contains('active')) {
+            closeMenu();
+        }
+    });
+    
+    // Закрытие при нажатии Escape
+    document.addEventListener('keydown', function(event) {
+        if (event.key === 'Escape' && mobileMenu.classList.contains('active')) {
+            closeMenu();
+        }
+    });
+    
+    // Закрытие при скролле
+    window.addEventListener('scroll', function() {
+        if (mobileMenu.classList.contains('active')) {
+            closeMenu();
+        }
+    });
+});
+</script>
 
 </body>
 </html>
