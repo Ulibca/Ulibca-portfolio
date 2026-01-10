@@ -1553,4 +1553,51 @@ h2 { animation-delay: 0.2s; }
         .delay-1 { animation-delay: 0.2s; }
         .delay-2 { animation-delay: 0.4s; }
         .delay-3 { animation-delay: 0.6s; }
+
         
+/* Мобильная адаптация навигации */
+@media (max-width: 768px) {
+    /* Делаем меню компактным */
+    nav {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        padding: 8px;
+        background: rgba(0, 0, 0, 0.95);
+        position: sticky;
+        top: 0;
+        z-index: 1000;
+    }
+    
+    /* Каждая ссылка занимает 25% ширины (4 в ряд) */
+    nav a {
+        flex: 0 0 calc(25% - 10px);
+        margin: 3px;
+        padding: 8px 5px;
+        font-size: 0.8em;
+        text-align: center;
+        border-radius: 5px;
+        background: rgba(255, 255, 255, 0.05);
+    }
+    
+    /* На очень маленьких экранах - 3 в ряд */
+    @media (max-width: 480px) {
+        nav a {
+            flex: 0 0 calc(33.333% - 10px);
+            font-size: 0.75em;
+            padding: 6px 3px;
+        }
+    }
+    
+    /* Убираем текст, оставляем только иконки */
+    nav a span {
+        display: none;
+    }
+    
+    /* Делаем иконки больше */
+    nav a::before {
+        font-size: 1.2em;
+        display: block;
+        margin-bottom: 3px;
+    }
+}
