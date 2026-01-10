@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ulibca | Иллюстратор, автор</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+                /* ДОПОЛНИТЕЛЬНЫЕ СТИЛИ ДЛЯ ПОРТФОЛИО */
+        
+        /* Фильтры категорий */
+        .portfolio-filters {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin: 30px 0;
+            flex-wrap: wrap;
+        }
+        
+        .filter-btn {
+            padding: 10px 25px;
+            background: rgba(255, 255, 255, 0.1);
+            color: white;
+            border: none;
+            border-radius: 25px;
+            cursor: pointer;
+            font-size: 1em;
+            transition: all 0.3s ease;
+            border: 1px solid transparent;
+        }
+        
+        .filter-btn:hover,
+        .filter-btn.active {
+            background: rgba(255, 107, 107, 0.2);
+            border-color: #ff6b6b;
+            transform: translateY(-2px);
+        }
+        
+        /* Галерея работ */
+        .portfolio-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 30px;
+            padding: 40px 0;
+        }
+        
+        .portfolio-item {
+            position: relative;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            transition: all 0.4s ease;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .portfolio-item:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(255, 107, 107, 0.2);
+            border-color: #ff6b6b;
+        }
+        
+        .portfolio-img {
+            width: 100%;
+            height: 250px;
+            object-fit: cover;
+            display: block;
+        }
+        
+        .portfolio-info {
+            padding: 20px;
+        }
+        
+        .portfolio-title {
+            font-size: 1.3em;
+            margin-bottom: 10px;
+            color: #4ecdc4;
+        }
+        
+        .portfolio-desc {
+            color: #ccc;
+            font-size: 0.9em;
+            line-height: 1.5;
+        }
+        
+        .portfolio-category {
+            display: inline-block;
+            background: rgba(78, 205, 196, 0.2);
+            color: #4ecdc4;
+            padding: 5px 15px;
+            border-radius: 15px;
+            font-size: 0.8em;
+            margin-top: 10px;
+        }
+        
+        /* Модальное окно для просмотра работы */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.9);
+            z-index: 1001;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+        
+        .modal-content {
+            max-width: 90%;
+            max-height: 90%;
+            position: relative;
+        }
+        
+        .modal-img {
+            width: 100%;
+            height: auto;
+            border-radius: 10px;
+        }
+        
+        .modal-close {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background: #ff6b6b;
+            color: white;
+            border: none;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            font-size: 1.5em;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        /* Пустая галерея (если нет работ) */
+        .empty-portfolio {
+            text-align: center;
+            padding: 60px 20px;
+            color: #aaa;
+            font-size: 1.2em;
+        }
+        
+        .empty-portfolio .btn {
+            margin-top: 20px;
+        }
+    </style>
+</style>
+</head>
+<body>
+    <nav>
+        <a href="index.html">🏠 Главная</a>
+        <a href="Portfolio.html">🎨 Работы</a>
+        <a href="book.html">📖 Книга</a>
+        <a href="me.html">👤 Обо мне</a>
+        <a href="services.html">💼 Услуги</a>
+        <a href="contact.html">📞 Контакты</a>
+    </nav>
+<main>
+    <h1>Мои работы</h1>
+    <h2>Илюстрации, проекты и творчество</h2>
+        <!--Фильтры-->
+<div class="portfolio-filters">
+        <button class="filter-btn active" data-filter="all">Все работы</button>
+        <button class="filter-btn" data-filter="book">Иллюстрации к книге</button>
+        <button class="filter-btn" data-filter="web">Веб-проекты</button>
+        <button class="filter-btn" data-filter="concept">Концепт-арты</button>
+</div>
+
+
+        <!--Галерея работ-->
+<div class="portfolio-grid" id="portfolio-grid"></div>
+
+
+<div class="portfolio-item" data-category="book">
+        <!--Заменить фото-->
+    <img src="img/photo_5348127602814090814_y.jpg" alt="Иллюстрация из книги" class="portfolio-img" onclick="openModal(this.src, 'Иллюстрация для книги')">
+<div class="portfolio-info">
+    <h3 class="portfolio-title">Обложка "Другой Реальности"</h3>
+        <p class="portfolio-desc">Дизайн обложки для моей авторской книги. Создано в 2025 году. Автор: Tasha</p>
+            <span class="portfolio-category">Иллюстрации к книге</span>
+    </div>
+</div>
+
+        <!--Пример работы 1-->
+<div class="portfolio-item" data-category="book">
+    <img src="img/photo_5352946994206866461_y.jpg" alt="Илюстрация из книги" class="portfolio-img" onclick="openModal(this.src, 'Иллюстрация для книги')">
+        <div class="portfolio-info">
+            <h3 class="portfolio-title">Иллюстрация к главе №22 </h3>
+            <span class="portfolio-category">Иллюстрации к книге</span>
+        </div>
+
+        <!--Пример работы 2-->
+<div class="portfolio-item" data-category="book">
+    <img src="img/photo_5352946994206866559_y.jpg" alt="Илюстрация из книги" class="portfolio-img" onclick="openModal(this.src, 'Иллюстрация для книги')">
+        <div class="portfolio-info">
+            <h3 class="portfolio-title">Иллюстрация к главе №20 </h3>
+            <span class="portfolio-category">Иллюстрации к книге</span>
+        </div>
+
+    <!-- Пример работы 4 (веб) -->
+<div class="portfolio-item" data-category="web">
+            <img src="img/2026-01-09_20-35-08.png" alt="Веб-проект" class="portfolio-img" onclick="openModal(this.src, 'Веб-сайт')">
+        <div class="portfolio-info">
+            <h3 class="portfolio-title">Портфолио-сайт</h3>
+    <p class="portfolio-desc">Данный сайт - пример моих навыков веб-разработки.</p>
+            <span class="portfolio-category">Веб-проекты</span>
+        </div>
+    </div>
+
+        <!-- Если работ нет -->
+    <div class="empty-portfolio" id="empty-portfolio" style="display: none;">
+        <p>В этой категории пока нет работ.</p>
+        <a href="services.html" class="btn primary">Заказать похожий проект</a>
+    </div>
+
+                <!-- Кнопки навигации -->
+    <div class="action-buttons" style="margin-top: 60px;">
+        <a href="services.html" class="btn primary">💼 Заказать работу</a>
+        <a href="contact.html" class="btn secondary">📞 Обсудить проект</a>
+    </div>
+</div>
+</main>
+<center>
+    <footer>
+    <small>Copyright &copy; 2025 Ulikca</small>
+            <p>
+            <a href="https://t.me/Koteikin69">Telegram</a> | 
+            <a href="mailto:galyatin10@imbox.com">Email</a> | 
+            <a href="https://steamcommunity.com/profiles/76561199524574573/">Steam</a>
+        </p>
+    </footer>
+</center>
+</body>
+</html>
